@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: exchange-server
+
+server:
+  port: 8086
+
+eureka:
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://discovery-server:8761/eureka
