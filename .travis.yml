@@ -5,3 +5,12 @@ script: "mvn test package"
 
 services:
 - docker
+
+after_success:
+  - docker build -t pavlok/cart ./cart
+  - docker build -t pavlok/eureka ./eureka
+  - docker build -t pavlok/exchange ./exchange
+  - echo "$DOCKER_PASSWORD"  | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push pavlok/cart
+  - docker push pavlok/eureka
+  - docker push pavlok/exchange
